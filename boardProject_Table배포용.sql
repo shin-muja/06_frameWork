@@ -55,6 +55,17 @@ COMMIT;
 
 SELECT * FROM "MEMBER";
 
+UPDATE  "MEMBER" SET
+"MEMBER_PW" = '$2a$10$DtClpJN220jM.rxOjo08WeOoPw3PQXTPCDoOyYzBH1qNPZTRUksKC'
+WHERE "MEMBER_NO" = '1';
+
+SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_NICKNAME, MEMBER_PW,
+MEMBER_TEL, MEMBER_ADDRESS, PROFILE_IMG, AUTHORITY,
+TO_CHAR(ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24"시" MI"분" SS"초"') ENROLL_DATE
+FROM "MEMBER"
+WHERE MEMBER_EMAIL = 'member01@kh.or.kr'
+AND MEMBER_DEL_FL = 'N';
+
 -----------------------------------------
 
 /* 이메일, 인증키 저장 테이블 생성 */
@@ -74,6 +85,7 @@ CREATE SEQUENCE SEQ_KEY_NO NOCACHE; -- 인증키 구분 번호 시퀀스
 
 
 SELECT * FROM "TB_AUTH_KEY";
+
 
 
 ------------------------------------------

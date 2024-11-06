@@ -29,7 +29,7 @@ public class ExampleController {
 	 * 
 	 */
 	
-	@GetMapping("example") // /example GET 방식 요청 매핑
+	@GetMapping("/param/example") // /example GET 방식 요청 매핑
 	public String exampleMethod() {
 		
 		// forward 하려는 html 파일 경로 return 작성

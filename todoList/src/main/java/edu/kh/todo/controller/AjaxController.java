@@ -76,7 +76,7 @@ public class AjaxController {
 	}
 	
 	
-	// 전체 Todo 개수 whghl
+	// 전체 Todo 개수 조회
 	// -> forward / redirect 를 원하는 아님
 	// -> "전체 Todo 개수" 라는 데이터가 비동기 요청 보낸쪽으로 반환되는 것을 원함
 	

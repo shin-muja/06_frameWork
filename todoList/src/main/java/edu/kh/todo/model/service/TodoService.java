@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import edu.kh.todo.model.dto.Todo;
 
 
-@Service 
 public interface TodoService {
 
 	/** (TEST) todoNo가 1인 할 일 제목 조회
