@@ -1,18 +1,23 @@
 package edu.kh.project.member.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.project.member.model.dto.Member;
 import edu.kh.project.member.model.sevice.MemberService;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 
@@ -74,7 +79,34 @@ public class MemberController {
 			// 1단계 : request scope에 세팅됨
 			// 2단계 : 클래스 위에 @SessionAttributes() 어노테이션 작성하여
 			//         session scope로 이동
+			
+			// ***************************Coockie************************
+			
+			// 이메일 저장
+			
+			// 쿠키 객체 생성 (K:V)
+			Cookie cookie = new Cookie("saveId", loginMember.getMemberEmail());
+			// saveId=member01@kh.or.kr
+			
+			// 쿠키가 적용될 경로 설정
+			// -> 클라이언트가 어떤 요청을 할 때 쿠키가 첨부될지 지정
+			
+			// ex) "/" : IP또는 도메인 또는 localhost
+			//			 --> 메인페이지 + 그 하위 주소 모두			
+			cookie.setPath("/");
+			
+			// 쿠키의 만료 기간 지정
+			if(saveId != null) { // 아이디 저장 체크 시
+				cookie.setMaxAge(60 * 60 * 24 * 30); // 초 단위로 지정
+				
+			} else { // 미체크 시
+				cookie.setMaxAge(0); // 0초 ( 클라이언트 쿠기 삭제 )
+			}
+			
+			// 응답 객체에 쿠키 추가
+			resp.addCookie(cookie);
 		}
+		
 		
 		return "redirect:/"; // 메인페이지 재요청
 	}
@@ -91,4 +123,24 @@ public class MemberController {
 		
 		return "redirect:/";
 	}
+	
+	/** 회원 가입 페이지로 이동
+	 * @return
+	 */
+	@GetMapping("signup")
+	public String signupPage() {
+		return "member/signup";
+	}
+	
+	/** 이메일 중복검사 (비동기 요청)
+	 * @return
+	 */
+	@ResponseBody // 응답 본문(fetch)으로 돌려보냄
+	@GetMapping("checkEmail") // Get요청 /member/checkEamil
+	public int checkEmail(@RequestParam("memberEmail") String memberEmail) {
+		
+		return service.checkEmail(memberEmail);
+	}
+	
+	
 }

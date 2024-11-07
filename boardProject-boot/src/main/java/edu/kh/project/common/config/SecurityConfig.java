@@ -1,4 +1,4 @@
-package edu.kh.project.common;
+package edu.kh.project.common.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
