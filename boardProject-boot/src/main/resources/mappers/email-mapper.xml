@@ -29,5 +29,6 @@
 	 	AND AUTH_KEY = #{authKey}
 	 </select>
 	 
+	 
 
 </mapper>

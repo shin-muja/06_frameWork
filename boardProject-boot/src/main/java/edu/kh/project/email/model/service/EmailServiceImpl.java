@@ -123,4 +123,7 @@ public class EmailServiceImpl implements EmailService{
 		// TODO Auto-generated method stub
 		return mapper.checkAuthKey(map);
 	}
+	
+	
+	
 }

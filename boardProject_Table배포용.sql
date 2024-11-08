@@ -56,8 +56,8 @@ COMMIT;
 SELECT * FROM "MEMBER";
 
 UPDATE  "MEMBER" SET
-"MEMBER_PW" = '$2a$10$DtClpJN220jM.rxOjo08WeOoPw3PQXTPCDoOyYzBH1qNPZTRUksKC'
-WHERE "MEMBER_NO" = '1';
+"MEMBER_PW" = '$2a$10$pdWXygANOjHsfpiorIh1YuT8MkZFyX8wio5bk/AjDiSaAH0kI.cRy'
+WHERE "MEMBER_NO" = '4';
 
 SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_NICKNAME, MEMBER_PW,
 MEMBER_TEL, MEMBER_ADDRESS, PROFILE_IMG, AUTHORITY,
@@ -72,6 +72,9 @@ WHERE MEMBER_DEL_FL = 'N'
 AND MEMBER_EMAIL = 'member02@kh.or.kr';
 -- 0이 조회 : 중복 X (해당 이메일 사용중인 회원 없음) -> 이용 가능
 -- 1이 조회 : 중복 O (해당 이메일 사용중인 회원 있음) -> 이용 불가능
+
+SELECT COUNT(*) FROM "MEMBER" WHERE
+MEMBER_DEL_FL = 'N' AND MEMBER_NICKNAME = '유저일';
 
 -----------------------------------------
 

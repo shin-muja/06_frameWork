@@ -17,5 +17,18 @@ public interface MemberService {
 	 * @author 신동국
 	 */
 	int checkEmail(String memberEmail);
+	
+	/** memberNickname 중복 검사
+	 * @param memberNickname
+	 * @return
+	 */
+	int checkNickname(String memberNickname);
+
+	/** 회원 가입 서비스
+	 * @param inputMember
+	 * @param memberAddress
+	 * @return
+	 */
+	int signup(Member inputMember, String[] memberAddress);
 
 }
