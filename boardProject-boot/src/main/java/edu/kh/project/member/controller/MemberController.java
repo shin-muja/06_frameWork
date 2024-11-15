@@ -1,5 +1,6 @@
 package edu.kh.project.member.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -189,5 +190,36 @@ public class MemberController {
 		// 실패 => redirect:signup
 		//		상대경로 : 현재 주소 -> /member/??? , ??? == signup(GET 방식 요청)
 	}
+	
+	/** 회원 정보 전부 가져오기
+	 * @return memberList
+	 */
+	@ResponseBody
+	@GetMapping("memberSelect")
+	public List<Member> memberSelect() {
+		
+		
+		return service.memberSelect();
+	}
+	
+	/** 받아온 회원의 비밀번호 초기화
+	 * @return
+	 */
+	@ResponseBody
+	@PostMapping("pwReset")
+	public int pwReset(@RequestBody int memberNo) {
+		
+		return service.pwReset(memberNo);		
+	}
+	
+	@ResponseBody
+	@PostMapping("delReset")
+	public int delReset(@RequestBody int memberNo) {
+		
+		
+		return service.delReset(memberNo);
+	}
+	
+	
 	
 }

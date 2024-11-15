@@ -21,3 +21,7 @@ form태그 제출 시 중간에 fetch 비동기 요청 시
 
 2. 동기 요청 수행( 수정 요청)
 async await
+
+ctrl + shift + r : 강력 새로고침
+
+

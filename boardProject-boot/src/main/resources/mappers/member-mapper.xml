@@ -1,39 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="edu.kh.project.member.model.mapper.MemberMapper">
-	<!-- namespace에 연결할 Mapper 인터페이스 패키지명 + 인터페이스 명 작성
-		-> Mapper 인터페이스 메서드 호출 시
-		xml 파일에 작성된 태그 중 메서드 명과 같은 id를 가진 SQL이 수행됨
-	 -->
-	 
-	 <!-- 로그인 -->
-	 <select id="login" parameterType="string" resultType="Member">
-	 	SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_NICKNAME, MEMBER_PW,
-		MEMBER_TEL, MEMBER_ADDRESS, PROFILE_IMG, AUTHORITY,
-		TO_CHAR(ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24"시" MI"분" SS"초"') ENROLL_DATE
+<mapper
+	namespace="edu.kh.project.member.model.mapper.MemberMapper">
+	<!-- namespace에 연결할 Mapper 인터페이스 패키지명 + 인터페이스 명 작성 -> Mapper 인터페이스 메서드 호출 
+		시 xml 파일에 작성된 태그 중 메서드 명과 같은 id를 가진 SQL이 수행됨 -->
+
+	<!-- 로그인 -->
+	<select id="login" parameterType="string" resultType="Member">
+		SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_NICKNAME, MEMBER_PW,
+		MEMBER_TEL,
+		MEMBER_ADDRESS, PROFILE_IMG, AUTHORITY,
+		TO_CHAR(ENROLL_DATE, 'YYYY"년"
+		MM"월" DD"일" HH24"시" MI"분" SS"초"') ENROLL_DATE
 		FROM "MEMBER"
-		WHERE MEMBER_EMAIL = #{memberEmail}
+		WHERE
+		MEMBER_EMAIL = #{memberEmail}
 		AND MEMBER_DEL_FL = 'N'
-	 </select>
-	 
-	 <!-- 이메일 중복 검사 -->
-	 <select id="checkEmail" parameterType="string" resultType="_int">
-	 	SELECT COUNT(*)
-	 	FROM "MEMBER"
+	</select>
+
+	<!-- 이메일 중복 검사 -->
+	<select id="checkEmail" parameterType="string" resultType="_int">
+		SELECT COUNT(*)
+		FROM "MEMBER"
 		WHERE MEMBER_DEL_FL = 'N'
 		AND MEMBER_EMAIL = #{memberEmail}
-	 </select>
+	</select>
 
 	<!-- 닉네임 중복검사 -->
-	 <select id="checkNickname" parameterType="string" resultType="_int">
-	 	SELECT COUNT(*) FROM "MEMBER" WHERE
-		MEMBER_DEL_FL = 'N' AND MEMBER_NICKNAME = #{memberNickname}
-	 </select>
-	 
-	 <!-- 회원 가입 -->
-	 <insert id="signup" parameterType="Member">
-	 	INSERT INTO "MEMBER"
-		VALUES(SEQ_MEMBER_NO.NEXTVAL, 
+	<select id="checkNickname" parameterType="string"
+		resultType="_int">
+		SELECT COUNT(*) FROM "MEMBER" WHERE
+		MEMBER_DEL_FL = 'N' AND MEMBER_NICKNAME =
+		#{memberNickname}
+	</select>
+
+	<!-- 회원 가입 -->
+	<insert id="signup" parameterType="Member">
+		INSERT INTO "MEMBER"
+		VALUES(SEQ_MEMBER_NO.NEXTVAL,
 		#{memberEmail},
 		#{memberPw},
 		#{memberNickname},
@@ -44,5 +48,32 @@
 		DEFAULT,
 		DEFAULT
 		)
-	 </insert>
+	</insert>
+
+	<!-- 회원 목록 조회 -->
+	<select id="memberSelect">
+		SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_NICKNAME,
+		MEMBER_TEL, MEMBER_ADDRESS, TO_CHAR(ENROLL_DATE, 'YYYY-MM-DD HH24:MI:SS')
+		ENROLL_DATE, MEMBER_DEL_FL
+		FROM "MEMBER"
+	</select>
+	
+	<!-- 비밀번호 초기화 -->
+	<update id="pwReset">
+		UPDATE "MEMBER" SET MEMBER_PW = #{memberPw}
+		WHERE MEMBER_NO = ${memberNo}
+	
+	</update>
+	
+	<select id="memberCheckDelN">
+		SELECT COUNT(*) FROM "MEMBER"
+		WHERE MEMBER_DEL_FL = 'N'
+		AND MEMBER_NO = ${memberNo}
+	</select>
+	
+	<update id="delReset">
+		UPDATE "MEMBER" SET MEMBER_DEL_FL = 'N'
+		WHERE MEMBER_NO = ${memberNo}
+	
+	</update>
 </mapper>

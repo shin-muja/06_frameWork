@@ -35,7 +35,7 @@ public class EmailConfig {
 	 * */
 	
 	// @Autowired는 Bean으로 등록된 것들만 사용가능하기에 사용 못한다
-	// @Value : properties에 작성된 내용중 key가 일치하는 Value 값을 얻어온다
+	// @Value : properties에 작성된 내용 중 key가 일치하는 Value 값을 얻어온다
 	@Value("${spring.mail.username}")
 	private String userName;
 	

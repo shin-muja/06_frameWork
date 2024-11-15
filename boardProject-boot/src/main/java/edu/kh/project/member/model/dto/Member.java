@@ -19,7 +19,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Builder
 public class Member {
-	private int memberNo;
+	private int memberNo; // 회원 번호
 	private String memberEmail;
 	private String memberPw;
 	private String memberNickname;
