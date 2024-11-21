@@ -1,4 +1,4 @@
-console.log("test");
+// console.log("test");
 /* REST(REpresentational State Transfer)  API
 
 - 자원(데이터,파일)을 이름(주소)으로 
@@ -33,7 +33,7 @@ const selectCommentList = () => {
   fetch("/comment?boardNo=" + boardNo) // GET 방식 요청
   .then(response => response.json())
   .then(commentList => {
-    console.log(commentList);
+    // console.log(commentList);
 
     // 화면에 존재하는 기존 댓글 목록 삭제 후
     // 조회된 commentList를 이용해서 새로운 댓글 목록 출력

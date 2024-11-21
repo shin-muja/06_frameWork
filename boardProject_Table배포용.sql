@@ -83,7 +83,6 @@ HWERE MEMBER_NO = ${memberNo};
 
 -- 비밀번호, 권한 제회 조회
 SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_NICKNAME, 
-MEMBER_TEL, MEMBER_ADDRESS, TO_CHAR(ENROLL_DATE, 'YYYY-MM-DD HH24:MI:SS') ENROLL_DATE
 , MEMBER_DEL_FL FROM "MEMBER";
 
 SELECT COUNT(*) FROM "MEMBER"
@@ -642,7 +641,23 @@ VALUES(1, 1999); -- 1번 회원이 1998번 글에 좋아요를 클릭함
 
 COMMIT;
 
+
+-- 좋아요 여부 확인
+SELECT COUNT(*) FROM "BOARD_LIKE";
 ----------------------------------------------------------
+
+SELECT * FROM "BOARD";
+-- 하나의 쿼리 안에 시퀀스 여러번 사용을 할수가 없다.
+INSERT INTO "BOARD_IMG" 
+(
+	SELECT NEXT_IMG_NO(), '경로1', '원본1', '변경1', 1, 1999 FROM DUAL
+	UNION
+	SELECT NEXT_IMG_NO(), '경로2', '원본2', '변경2', 2, 1999 FROM DUAL
+	UNION
+	SELECT NEXT_IMG_NO(), '경로3', '원본3', '변경3', 3, 1999 FROM DUAL
+);
+
+SELECT * FROM "BOARD_IMG";
 
 -- SEQ_IMG_NO 시퀀스의 다음 값을 반환하는 함수 생성
 
@@ -663,7 +678,7 @@ END;
 
 SELECT * FROM "MEMBER";
 
-
+SELECT NEXT_IMG_NO() FROM DUAL;
 
 
 
@@ -783,3 +798,13 @@ ORDER BY MAX_MESSAGE_NO DESC NULLS LAST;
 
 
 
+
+
+
+
+UPDATE "BOARD" SET
+BOARD_TITLE = #{boardTitle},
+BOARD_CONTENT = #{boardContent}
+WHERE BOARD_CODE = #{boardCode},
+AND BOARD_NO = #{boardNo}
+AND MEMBER_NO = #{memberNo};

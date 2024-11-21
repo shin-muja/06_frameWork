@@ -153,7 +153,7 @@ addBtn.addEventListener("click", () => {
     body : JSON.stringify(param) // param이라는 JS 객체를 JSON(string)으로 변환
   }).then( resp => resp.text() )
   .then( result => {
-    // 첫번째 then에서 반환도니 값 중 변환된 text를 result에 저장
+    // 첫번째 then에서 반환된 값 중 변환된 text를 result에 저장
 
     if(result > 0) { // 성공
       alert("추가 성공");
@@ -183,7 +183,7 @@ addBtn.addEventListener("click", () => {
 const selectTodoList = () => {
 
   fetch("/ajax/selectList")
-  .then( resp => resp.json()) // 응답 결과를 json으로 파싱
+  .then( resp => resp.text()) // 응답 결과를 json으로 파싱
   .then( todoList => {
 
     // 매개변수 todoList :
@@ -203,6 +203,10 @@ const selectTodoList = () => {
     // ------------------------------------------------
 
     // 기존에 출력되어 있던 할 일 목록을 모두 비우기
+
+    todoList = JSON.parse(todoList); 
+    console.log(todoList);
+
     tbody.innerHTML = "";
 
     // #tbody에 tr/td 요소를 생성해서 내용 추가
@@ -220,7 +224,6 @@ const selectTodoList = () => {
         // 제목인 경우
         if( key === 'todoTitle' ) {
           const a = document.createElement("a"); // a태그 생성
-          
           a.innerText = todo[key]; // todo["todoTitle"] 값을 태그 속 텍스트에 대입
           a.href = "/ajax/detail?todoNo=" + todo.todoNo; // todo.todoNo == todo[todoNo]
           td.append(a);
