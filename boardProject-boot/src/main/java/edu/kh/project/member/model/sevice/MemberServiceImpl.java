@@ -26,7 +26,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	// 로그인 서비스
 	@Override
-	public Member login(Member inputMember) {
+	public Member login(Member inputMember) throws Exception{
 		
 		// 암호화 진행
 		
@@ -116,8 +116,9 @@ public class MemberServiceImpl implements MemberService {
 		return mapper.signup(inputMember);
 	}
 	
-	// 회원 정보 수정
+	// 회원 목록 조회
 	@Override
+	@Transactional
 	public List<Member> memberSelect() {
 		// TODO Auto-generated method stub
 		return mapper.memberSelect();

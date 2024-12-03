@@ -11,7 +11,7 @@ public interface MemberService {
 	 * @param inputMember
 	 * @return loginMember
 	 */
-	Member login(Member inputMember);
+	Member login(Member inputMember) throws Exception;
 
 	/** 이메일 중복검사 서브스
 	 * @param memberEmail

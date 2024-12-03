@@ -169,3 +169,13 @@ HttpServletRequest와 Session을 통해 apllication 얻어올 수 있음
 
 URI : /myPage/profile?memberNo=1 이걸 URL이라하는데 쿼리스트링을 제외한
        /myPage/profile 을 
+
+
+
+스프링 스케쥴러
+특정 시기에 일정한 업무를 설정하면 스프링에게 시킴
+주로 시키는 작업 : 이미지 삭제
+
+AOP 분산되어있는 관심사를 모아 모듈화하는 기법
+
+AOP 분산되어있는 관심사를 모아 모듈화하는 기법

@@ -32,4 +32,5 @@ public class InterceptorConfig implements WebMvcConfigurer {
 							"/favicon.ico"); // 가로채지 않을 주소를 지정
 	}
 
+	
 }
