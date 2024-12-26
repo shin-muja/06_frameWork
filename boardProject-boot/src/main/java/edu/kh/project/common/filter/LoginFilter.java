@@ -69,9 +69,6 @@ public class LoginFilter implements Filter {
 			chain.doFilter(request, response);
 		}
 		
-		// /loginError 재요청
-		// resp 이용해서 원하는 곳으로 리다이렉트
-		
 	}
 
 }

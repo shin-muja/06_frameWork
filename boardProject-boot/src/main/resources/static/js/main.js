@@ -110,8 +110,8 @@ selectMemberList.addEventListener("click", () => {
   fetch("/member/memberSelect")
   .then(resp => resp.json())
   .then(memberList1 => {
-
-    memberList1.innerHTML = "";
+    // console.log(memberList1);
+    memberListTbody.innerHTML = "";
 
 
     for( let member of memberList1) {
@@ -120,6 +120,7 @@ selectMemberList.addEventListener("click", () => {
       const arr = ['memberNo', 'memberEmail', 'memberNickname', 'memberDelFl']
 
       for (let i of arr ) {
+        // console.log(member['memberNo']);
         // td 태그 생성
         const td = document.createElement("td");
 
