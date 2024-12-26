@@ -62,8 +62,6 @@ public class BoardController {
 							Model model,
 							@RequestParam Map<String, Object> paramMap) {
 		
-		log.debug("boardCode : " + boardCode);
-		
 		// 조회 서비스 호출 후 결과 반환
 		Map<String, Object> map = null;
 		
