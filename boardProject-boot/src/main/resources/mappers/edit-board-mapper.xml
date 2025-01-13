@@ -118,7 +118,7 @@
 	<!-- 게시글 이미지 삽입 (1행) -->
 	<insert id="insertImg">
 		INSERT INTO "BOARD_IMG" 
-		VALUES(NEXT_IMG_NO(), #{imgPath}, #{imgOriginalName},
+		VALUES(SEQ_IMG_NO.NEXTVAL, #{imgPath}, #{imgOriginalName},
 				 #{imgRename}, #{imgOrder}, #{boardNo})
 	</insert>
 	

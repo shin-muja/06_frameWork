@@ -10,3 +10,12 @@ if(insertBtn != null) {
         location.href = `/editBoard/${boardCode}/insert`;
     });
 }
+
+window.addEventListener("load", (event) => {
+    event.preventDefault();
+    console.log("뜨냐냐;")
+});
+ 
+function YourFunction() {
+    alert("Welcome back")
+}
